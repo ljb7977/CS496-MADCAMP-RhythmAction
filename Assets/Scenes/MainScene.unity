@@ -140,7 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abb02bc30d0030438d41c339651a6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  period: 0
   shape: {fileID: 4801612063581784, guid: 23ac58de8d6ee6049a5b16ffedbe973d, type: 2}
+  bpm: 130
 --- !u!4 &25272561
 Transform:
   m_ObjectHideFlags: 0

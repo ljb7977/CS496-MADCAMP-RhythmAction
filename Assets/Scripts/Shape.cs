@@ -27,16 +27,14 @@ public class Shape : MonoBehaviour {
     SpriteRenderer sr;
     Sprite[] sprites;
 
-    float startTime, moveTime=0.25f;
+    float startTime, moveTime=0.25f, y_velocity;
     bool isMoving = false;
 
 	// Use this for initialization
 	void Start () {
-        float y = 6f;
-
+        moveTime = transform.parent.GetComponent<Engine>().period / 2f;
+        y_velocity = 1.5f / moveTime;
         rb = GetComponent<Rigidbody2D>();
-        //rb.MovePosition(new Vector2(transform.position.x, y));
-
         sprites = Resources.LoadAll<Sprite>("Shape");
 
         sr = GetComponent<SpriteRenderer>();
@@ -79,7 +77,7 @@ public class Shape : MonoBehaviour {
 
     public void Move()
     {
-        rb.velocity = new Vector2(0, -5f);
+        rb.velocity = new Vector2(0, -y_velocity);
         startTime = Time.time;
         isMoving = true;
     }
