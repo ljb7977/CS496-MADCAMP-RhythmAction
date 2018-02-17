@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
     public AudioSource bgsound;
     public AudioSource beatsound;
+
+    public int score;
 
     float bpm = 168;
     int clapperbeat = 4;    
@@ -14,9 +17,11 @@ public class UI : MonoBehaviour {
     int bgbeat;
 
     int prevbeat = -1;
-    // Use this for initialization
-    void Start () {
 
+    public Text text;
+    
+    void Start () {
+        score = 0;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +43,8 @@ public class UI : MonoBehaviour {
             Action_beat();
         }
         */
+        text.text = "Score: " + score;
+
     }
 
     void Action_beat()
@@ -46,6 +53,5 @@ public class UI : MonoBehaviour {
         cube.AddComponent<Rigidbody>();
         cube.transform.position = new Vector3(0, 0, 0);
         cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
     }
 }

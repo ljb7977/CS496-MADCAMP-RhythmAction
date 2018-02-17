@@ -8,24 +8,43 @@ public class Engine : MonoBehaviour {
     public Transform shape;
     private float nextTime = 0f;
 
-    public int bpm = 130;
+    public AudioSource bgsound;
+    public int bpm;
+    
+    public LayerMask buttonLayer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        
+        Application.targetFrameRate = 60;
         Screen.SetResolution(1080, 1920, true);
         period = 60f / bpm;
-        Debug.Log(period);
-        Debug.Log(Screen.width);
+        bgsound.PlayDelayed(3);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(Time.time > nextTime)
+
+    // Update is called once per frame
+    void Update() {
+        if (Time.time > nextTime)
         {
             nextTime += period;
-            Transform left = Instantiate(shape, new Vector3(-1.7f, 6.4f), Quaternion.identity, transform);
-            Transform right = Instantiate(shape, new Vector3(1.7f, 6.4f), Quaternion.identity, transform);
+            Instantiate(shape, new Vector3(-1.7f, 6.3f), Quaternion.identity, transform);
+            Instantiate(shape, new Vector3(1.7f, 6.3f), Quaternion.identity, transform);
             BroadcastMessage("Move");
         }
-	}
+        /*
+        foreach (Touch touch in Input.touches)
+        {
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(touch.position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, buttonLayer))
+            {
+                GameObject recipient = hit.transform.gameObject;
+                if (touch.phase == TouchPhase.Began)
+                {
+                    recipient.SendMessage("OnTouch", hit.point);
+                }
+            }
+        }*/
+    }
 }
